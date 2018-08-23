@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Running tests
           command: |
+            apt-get install lldb
             which gdb || true
             which lldb || true
             ulimit -c unlimited
