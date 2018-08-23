@@ -8,9 +8,11 @@ jobs:
       - run:
           name: Running tests
           command: |
+            which gdb || true
+            which lldb || true
             ulimit -c unlimited
             cargo test || true;
-            RUST_STACKTRACE=1 ./target/debug/deps/parinfer_rust-*
+            RUST_STACKTRACE=1 ./target/debug/deps/parinfer_rust-* --test-all
       - run:
           name: Saving core dumps
           command: |
