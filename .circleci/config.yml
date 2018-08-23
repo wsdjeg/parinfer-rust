@@ -10,8 +10,16 @@ jobs:
           command: |
             ulimit -c unlimited
             cargo test
-            command -v gdb || true;
-            command -v lldb || true;
+      - run:
+          name: Saving core dumps
+          command: |
+            if [[ -f core.* ]]; then
+              mkdir -p /tmp/core_dumps
+              cp core.* /tmp/core_dumps
+            fi
+          when: on_fail
+      - store_artifacts:
+          path: /tmp/core_dumps
 workflows:
   version: 2
   build-and-deploy:
