@@ -38,7 +38,7 @@ mod reference_hack {
         if dladdr(initialize_ptr, &mut info) == 0 {
             panic!("Could not get parinfer library path.");
         }
-        let handle = dlopen(info.dli_fname, RTLD_LAZY|RTLD_NOLOAD|RTLD_GLOBAL|RTLD_NODELETE);
+        let handle = dlopen(info.dli_fname, RTLD_LAZY|RTLD_GLOBAL|RTLD_NODELETE);
         if handle == ptr::null_mut() {
             if dlerror() == ptr::null_mut() {
                 panic!("Could not reference parinfer_rust library {:?}.",
