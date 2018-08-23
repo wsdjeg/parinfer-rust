@@ -8,9 +8,7 @@ jobs:
       - run:
           name: Running tests
           command: |
-            sudo apt-get install -y lldb
-            which gdb || true
-            which lldb || true
+            #sudo apt-get install -y lldb
             ulimit -c unlimited
             cargo test -v || true;
             ls ./target/debug/deps/parinfer_rust-*
@@ -21,10 +19,8 @@ jobs:
       - run:
           name: Saving core dumps
           command: |
-            if [[ -f core.* ]]; then
-              mkdir -p /tmp/core_dumps
-              cp core.* /tmp/core_dumps
-            fi
+            mkdir -p /tmp/core_dumps
+            find target -name 'core.*' -exec cp {} /tmp/core_dumps/ \;
           when: on_fail
       - store_artifacts:
           path: /tmp/core_dumps
