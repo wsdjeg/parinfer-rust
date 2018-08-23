@@ -8,19 +8,20 @@ jobs:
       - run:
           name: Running tests
           command: |
-            #sudo apt-get install -y lldb
+            sudo apt-get install -y lldb
             ulimit -c unlimited
             cargo test -v || true;
-            ls ./target/debug/deps/parinfer_rust-*
-            for f in ./target/debug/deps/parinfer_rust-*; do
-              RUST_STACKTRACE=1 "$f"
-              break
-            done
+            bin=$(ls ./target/debug/deps/parinfer_rust-* |head -n 1)
+            "$bin"
       - run:
           name: Saving core dumps
           command: |
             mkdir -p /tmp/core_dumps
             cp core.* /tmp/core_dumps/
+            bin=$(ls ./target/debug/deps/parinfer_rust-* |head -n 1)
+            for corefile in core.*; do
+              lldb "$bin" -c "$corefile" -bo "bt all" || true
+            done
           when: on_fail
       - store_artifacts:
           path: /tmp/core_dumps
