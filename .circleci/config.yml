@@ -20,7 +20,7 @@ jobs:
           name: Saving core dumps
           command: |
             mkdir -p /tmp/core_dumps
-            find target -name 'core.*' -exec cp {} /tmp/core_dumps/ \;
+            cp core.* /tmp/core_dumps/
           when: on_fail
       - store_artifacts:
           path: /tmp/core_dumps
