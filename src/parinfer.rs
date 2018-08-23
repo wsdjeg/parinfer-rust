@@ -33,6 +33,7 @@ fn match_paren(paren: &str) -> Option<&'static str> {
 #[cfg(test)]
 #[test]
 fn match_paren_works() {
+    println!("match_paren_works");
     assert_eq!(match_paren("}"), Some("{"));
     assert_eq!(match_paren("x"), None);
 }
@@ -494,6 +495,7 @@ fn replace_within_string(orig: &str, start: usize, end: usize, replace: &str) ->
 #[cfg(test)]
 #[test]
 fn replace_within_string_works() {
+    println!("replace_within_string_works");
     assert_eq!(replace_within_string("aaa", 0, 2, ""), "a");
     assert_eq!(replace_within_string("aaa", 0, 1, "b"), "baa");
     assert_eq!(replace_within_string("aaa", 0, 2, "b"), "ba");
@@ -506,6 +508,7 @@ fn repeat_string(text: &str, n: usize) -> String {
 #[cfg(test)]
 #[test]
 fn repeat_string_works() {
+    println!("repeat_string_works");
     assert_eq!(repeat_string("a", 2), "aa");
     assert_eq!(repeat_string("aa", 3), "aaaaaa");
     assert_eq!(repeat_string("aa", 0), "");
@@ -524,6 +527,7 @@ fn get_line_ending(text: &str) -> &'static str {
 #[cfg(test)]
 #[test]
 fn get_line_ending_works() {
+    println!("get_line_ending_works");
     assert_eq!(get_line_ending("foo\nbar"), "\n");
     assert_eq!(get_line_ending("foo\r\nbar"), "\r\n");
 }
@@ -629,6 +633,7 @@ fn clamp<T: Clone + Ord>(val: T, min_n: Option<T>, max_n: Option<T>) -> T {
 #[cfg(test)]
 #[test]
 fn clamp_works() {
+    println!("clamp_works");
     assert_eq!(clamp(1, Some(3), Some(5)), 3);
     assert_eq!(clamp(9, Some(3), Some(5)), 5);
     assert_eq!(clamp(1, Some(3), None), 3);
@@ -649,6 +654,7 @@ fn peek<T>(array: &Vec<T>, i: usize) -> Option<&T> {
 #[cfg(test)]
 #[test]
 fn peek_works() {
+    println!("peek_works");
     assert_eq!(peek(&vec!['a'], 0), Some(&'a'));
     assert_eq!(peek(&vec!['a'], 1), None);
     assert_eq!(peek(&vec!['a', 'b', 'c'], 0), Some(&'c'));
@@ -673,6 +679,7 @@ fn is_open_paren(paren: &str) -> bool {
 #[cfg(test)]
 #[test]
 fn is_open_paren_works() {
+    println!("is_open_paren_works");
     assert!(is_open_paren("("));
     assert!(!is_open_paren("}"));
 }
