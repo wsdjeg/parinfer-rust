@@ -12,7 +12,7 @@ jobs:
             which gdb || true
             which lldb || true
             ulimit -c unlimited
-            cargo test || true;
+            cargo test -v || true;
             RUST_STACKTRACE=1 ./target/debug/deps/parinfer_rust-* --test-all
       - run:
           name: Saving core dumps
