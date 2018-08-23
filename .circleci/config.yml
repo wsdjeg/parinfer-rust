@@ -9,7 +9,8 @@ jobs:
           name: Running tests
           command: |
             ulimit -c unlimited
-            cargo test
+            cargo test || true;
+            RUST_STACKTRACE=1 ./target/debug/deps/parinfer_rust-*
       - run:
           name: Saving core dumps
           command: |
